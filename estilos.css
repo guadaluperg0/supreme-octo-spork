@@ -1,0 +1,160 @@
+body {
+  font-family:  sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6; 
+  background-color: #f4f4f4; 
+  color: #333;
+}
+
+header {
+  background-color: #333; 
+  color: #fff; 
+  padding: 1rem 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center; 
+}
+
+nav li {
+  display: inline; 
+  margin: 0 1rem; 
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.busqueda {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#buscador {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+#hero {
+  position: relative; 
+  height: 500px; 
+  overflow: hidden;
+}
+
+#hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  
+}
+
+#hero h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; 
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px #000; 
+}
+
+
+#menu {
+  padding: 2rem;
+}
+
+#menu p {
+  margin-bottom: 0.5rem;
+}
+
+#files {
+  padding: 2rem;
+  text-align: center;
+}
+
+#files img {
+  width: 150px; 
+  height: auto
+  margin: 1rem;
+  border-radius: 5px; 
+  box-shadow: 2px 2px 5px #888888; 
+}
+
+
+aside {
+  padding: 2rem;
+  text-align: center;
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+#redes-sociales img {
+  width: 30px;
+  height: 30px;
+  margin: 0 1rem;
+  vertical-align: middle; 
+}
+
+#contacto {
+  margin-top: 1rem;
+}
+
+#contacto form {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+
+}
+
+#contacto input[type="text"] {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-grow: 1; 
+}
+
+#contacto button[type="submit"] {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #ff9800;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer; 
+
+}
+
+/*Responsive Design*/
+@media (max-width: 768px) {
+  nav ul {
+    text-align: left; 
+  }
+  nav li {
+    display: block; 
+    margin: 0.5rem 0;
+  }
+  #files img {
+    width: 100%; 
+  }
+  #contacto form{
+    flex-direction: column;
+    align-items: center;
+  }
+    #contacto input[type="text"]{
+        margin-bottom: 0.5rem;
+    }
+}
