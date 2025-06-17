@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Restaurante "La Mexicana"</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <style>
+        #map { height: 400px; }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px; /* Ajusta el ancho según sea necesario */
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            justify-content: center; /* Centrar el contenido horizontalmente */
+            align-items: center; /* Centrar el contenido verticalmente */
+            min-height: 100vh; /* Asegurarse de que ocupa toda la altura de la pantalla */
+            flex-direction: column; /* Alinear los elementos en columna */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contáctanos</h1>
+        <section id="mapa">
+            <h2>Nuestra Ubicación</h2>
+            <div id="map"></div>
+        </section>
+
+        <section id="formulario">
+            <h2>Envíanos un Mensaje</h2>
+            <form id="contactForm" action="enviar.php" method="post" >
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <div id="nombreError" class="error"></div>
+
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+                <div id="correoError" class="error"></div>
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                <div id="mensajeError" class="error"></div>
+
+                <button type="submit">Enviar</button>
+            </form>
+            <div id="message"></div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script>
+        // Inicializar el mapa con una ubicación ficticia
+        var map = L.map('map').setView([19.4326, -99.1332], 13); // Latitud y longitud ficticias, ajustar según sea necesario
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Marcador en la ubicación ficticia
+        L.marker([19.4326, -99.1332]).addTo(map)
+            .bindPopup('Restaurante "La Mexicana"')
+            .openPopup();
+
+        // Validación del formulario (ejemplo simple)
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            const nombre = document.getElementById("nombre").value;
+            const correo = document.getElementById("correo").value;
+            const mensaje = document.getElementById("mensaje").value;
+
+            // Validación simple (reemplaza con tu lógica de validación)
+            if (nombre.trim() === "" || correo.trim() === "" || mensaje.trim() === "") {
+                document.getElementById("nombreError").textContent = nombre.trim() === "" ? "El campo Nombre es obligatorio" : "";
+                document.getElementById("correoError").textContent = correo.trim() === "" ? "El campo Correo Electrónico es obligatorio" : "";
+                document.getElementById("mensajeError").textContent = mensaje.trim() === "" ? "El campo Mensaje es obligatorio" : "";
+
+            }else{
+              document.getElementById("message").textContent = "Mensaje enviado correctamente";
+              document.getElementById("contactForm").reset();
+            }
+        });
+    </script>
+</body>
+</html>
